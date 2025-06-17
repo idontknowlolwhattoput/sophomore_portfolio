@@ -1,1 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Win95Font';
+  src: url('../fonts/W95FA.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+    background: #008080;
+}
+
+body {
+  margin: 0;
+}
+
+.pixel {
+     font-family: 'Win95Font', sans-serif;
+}
