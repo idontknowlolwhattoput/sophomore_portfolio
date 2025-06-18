@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: 'Win95Font';
-  src: url('../fonts/W95FA.otf') format('truetype');
+  src: url('./assets//fonts/W95FA.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
