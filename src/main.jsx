@@ -4,7 +4,5 @@ import Win95home from '../src/pages/Win95home'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <Win95home />
-  </StrictMode>,
 )

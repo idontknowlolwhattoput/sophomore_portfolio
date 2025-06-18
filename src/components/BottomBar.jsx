@@ -19,7 +19,7 @@ function BottomBar() {
 
   const handleClick = () => {
     setToggle(prev => !prev);
-    console.log(isToggled)
+    localStorage.setItem("isToggled", isToggled)
   };
 
   return (
