@@ -3,15 +3,17 @@
 
 @font-face {
   font-family: 'Win95Font';
-  src: url('./assets//fonts/W95FA.otf') format('truetype');
+  src: url('./assets/fonts/W95FA.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 
 :root {
+    cursor: url("../src/assets/cursors/arrow.cur"), pointer;
     background: #008080;
 }
+
 
 body {
   margin: 0;
@@ -19,4 +21,8 @@ body {
 
 .pixel {
      font-family: 'Win95Font', sans-serif;
+}
+
+.custom-cursor {
+   cursor: url('./assets/img/windows95logo.svg'), auto
 }
