@@ -10,6 +10,7 @@ function BottomBar() {
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(now);
+      console.log(isToggled)
     
     };
     updateTime();
@@ -25,7 +26,7 @@ function BottomBar() {
   return (
     <div
       className="flex justify-between items-center fixed bottom-0 w-full h-[8vh] pl-5 pr-5 bg-[#C0C0C0] border-t-4 border-white"
-      onClick={handleClick}
+        onClick={() => {setToggle(true)}}
     >
       <div className="flex flex-row gap-3">
         <motion.div
