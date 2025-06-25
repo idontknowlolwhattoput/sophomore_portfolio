@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <div>
-      <div className="flex flex-col pl-5 pt-8 gap-3 w-screen h-screen">
+      <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
         <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}>
           <img src={imageMap[ico.src]} className="w-15 h-15" />
