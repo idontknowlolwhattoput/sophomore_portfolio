@@ -23,8 +23,6 @@ function App() {
     { iconname: "Email me!", src: "email", default: "about me" },
   ];
   
-  
-
   return (
     <>
       <div>
