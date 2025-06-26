@@ -1,10 +1,13 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import BottomBar from "../components/BottomBar";
+import winlogo from '../assets/img/windows95logo.svg';
 
+import { motion } from "motion/react";
 import about from "../assets/img/about.svg";
 import skills from "../assets/img/cv.svg";
 import contacts from "../assets/img/contacts.svg";
 import email from "../assets/img/email.svg";
+
 
 const imageMap = {
   about,
@@ -14,19 +17,41 @@ const imageMap = {
 };
 
 
+  
+
 function App() {
-  const [isToggled, setToggle] = useState(false)
+  
+  const [isToggled, setToggle] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
   const icons = [
     { iconname: "About me", src: "about", default: "about me" },
     { iconname: "CV/Skills", src: "skills", default: "about me" },
     { iconname: "Contacts", src: "contacts", default: "contacts" },
     { iconname: "Email me!", src: "email", default: "about me" },
   ];
+
+  const handleClick = () => {
+       setToggle(prev => !prev)
+  }
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(now);
+      console.log(isToggled)
+    
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 100);
+    return () => clearInterval(interval);
+  }, []);
+
   
   return (
     <>
       <div>
-      <div className="flex flex-col pl-5 pt-8 gap-3 w-screen h-screen">
+      <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
         <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}>
           <img src={imageMap[ico.src]} className="w-15 h-15" />
@@ -36,8 +61,36 @@ function App() {
     </div>
       </div>
       <div className="bottom-0">
-        <BottomBar setToggle={setToggle} />
+        <div
+      className="flex justify-between items-center fixed bottom-0 w-full h-[8vh] pl-5 pr-5 bg-[#C0C0C0] border-t-4 border-white"
+        onClick={handleClick}
+    >
+      <div className="flex flex-row gap-3">
+        <motion.div
+          whileTap={{ y: 2, scale: 0.96 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 15,
+          }}
+          className="flex items-center justify gap-3 bg-[#C0C0C0] border-t-3 border-white border-l-3 h-10 w-35 shadow-[2px_2px_2px_2px_rgba(0,0,0,0.9)]"
+        >
+          <img src={winlogo} className="h-8 w-12 pl-3" />
+          <h1 className="pixel tracking-widst text-black text-2xl font-bold spacing">Start</h1>
+        </motion.div>   
       </div>
+
+      <div className="flex items-center font-regular justify-center gap-3 bg-[#C0C0C0] border-b-3 border-white border-r-3 h-10 w-30 shadow-[-2px_-2px_4px_2px_rgba(0,0,0,0.9)]">
+        <h1 className="pixel tracking-widest text-black text-lg spacing">
+          {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </h1>
+      </div>
+    </div>
+      </div>
+
+      {isToggled && (
+         <div className="bg-red-500 h-50 w-50 top-0"></div>
+      )}
     </>
   );
 }
