@@ -49,7 +49,10 @@ function App() {
 
   
   return (
-    <>
+    <> 
+     {isToggled && (
+         <div className="absolute h-100 w-75 bg-[#C0C0C0] bottom-10"></div>
+      )}
       <div>
       <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
@@ -87,10 +90,6 @@ function App() {
       </div>
     </div>
       </div>
-
-      {isToggled && (
-         <div className="bg-red-500 h-50 w-50 top-0"></div>
-      )}
     </>
   );
 }
