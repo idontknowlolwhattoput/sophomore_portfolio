@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BottomBar from "../components/BottomBar";
 import winlogo from '../assets/img/windows95logo.svg';
 
+import { Analytics } from '@vercel/analytics/react';
 import { motion } from "motion/react";
 import about from "../assets/img/about.svg";
 import skills from "../assets/img/cv.svg";
@@ -75,7 +76,7 @@ return (
            <div className="flex items-center w-full h-13 hover:bg-[#0000ff] pl-2  " key={key}> 
                <img src={imageMap[ico.src]} className="w-8 h-8 mr-2" />
                <p>{ico.iconname}</p>
-               
+
            </div>
         ))}
       </div>
@@ -119,6 +120,7 @@ return (
       </div>
     </div>
   </div>
+   
 </>
 );
 }
