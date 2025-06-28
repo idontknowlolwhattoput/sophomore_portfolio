@@ -39,8 +39,6 @@ function App() {
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(now);
-      console.log(isToggled)
-    
     };
     updateTime();
     const interval = setInterval(updateTime, 100);
@@ -51,7 +49,7 @@ function App() {
   return (
     <> 
      {isToggled && (
-         <div className="absolute h-100 w-75 bg-[#C0C0C0] bottom-10"></div>
+         <div className="absolute h-100 w-75 bg-[#C0C0C0] bottom-13"></div>
       )}
       <div>
       <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
