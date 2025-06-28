@@ -16,23 +16,36 @@ const imageMap = {
   email,
 };
 
-
-  
-
 function App() {
-  
+
   const [isToggled, setToggle] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const icons = [
-    { iconname: "About me", src: "about", default: "about me" },
-    { iconname: "CV/Skills", src: "skills", default: "about me" },
-    { iconname: "Contacts", src: "contacts", default: "contacts" },
-    { iconname: "Email me!", src: "email", default: "about me" },
+    {
+      iconname: "About me",
+      src: "about",
+      default: "about me"
+    },
+    {
+      iconname: "CV/Skills",
+      src: "skills",
+      default: "about me"
+    },
+    {
+      iconname: "Contacts",
+      src: "contacts",
+      default: "contacts"
+    },
+    {
+      iconname: "Email me!",
+      src: "email",
+      default: "about me"
+    },
   ];
 
   const handleClick = () => {
-       setToggle(prev => !prev)
+    setToggle(prev => !prev)
   }
 
   useEffect(() => {
@@ -45,51 +58,69 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  
-  return (
-    <> 
-     {isToggled && (
-         <div className="absolute h-100 w-75 bg-[#C0C0C0] bottom-13"></div>
-      )}
-      <div>
-      <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
-      {icons.map((ico, key) => (
-        <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}>
-          <img src={imageMap[ico.src]} className="w-15 h-15" />
-          <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
+
+return (
+<>
+  {/* START MENU MODAL */}
+  {isToggled && (
+  <div className="flex flex-row absolute h-100 w-75 bg-[#C0C0C0] bottom-13 z-40 shadow-[2px_2px_3px_0.5px_rgba(0,0,0,0.9)]">
+      <span className= "flex items-center justify-center bg-gray-600 w-12 ">
+        <div className="flex flex-col gap-26  mt-20">
+           <p className=" -rotate-90 text-gray-400 text-3xl font-semilight   whitespace-nowrap ">95</p>
+          <p className=" -rotate-90 text-gray-400 text-3xl font-extrabold whitespace-nowrap ">Windows</p>
         </div>
+      </span>
+      <div className="pixel text-lg font-medium flex flex-col h-full w-full">
+        {icons.map((ico, key) => (
+           <div className="flex items-center w-full h-13 hover:bg-[#0000ff] pl-2  " key={key}> 
+               <img src={imageMap[ico.src]} className="w-8 h-8 mr-2" />
+               <p>{ico.iconname}</p>
+               
+           </div>
+        ))}
+      </div>
+  </div>
+  )}
+
+  {/* WINDOW AREA */}
+  <div>
+    <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
+      {icons.map((ico, key) => (
+      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}>
+        <img src={imageMap[ico.src]} className="w-15 h-15" />
+        <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
+      </div>
       ))}
     </div>
-      </div>
-      <div className="bottom-0">
-        <div
+  </div>
+
+  {/* NAVBAR */}
+  <div className="bottom-0">
+    <div
       className="flex justify-between items-center fixed bottom-0 w-full h-[8vh] pl-5 pr-5 bg-[#C0C0C0] border-t-4 border-white"
-        onClick={handleClick}
-    >
+      onClick={handleClick}>
       <div className="flex flex-row gap-3">
-        <motion.div
-          whileTap={{ y: 2, scale: 0.96 }}
-          transition={{
+        <motion.div whileTap={{ y: 2, scale: 0.96 }} transition={{
             type: "spring",
             stiffness: 300,
             damping: 15,
           }}
-          className="flex items-center justify gap-3 bg-[#C0C0C0] border-t-3 border-white border-l-3 h-10 w-35 shadow-[2px_2px_2px_2px_rgba(0,0,0,0.9)]"
-        >
+          className="flex items-center justify gap-3 bg-[#C0C0C0] border-t-3 border-white border-l-3 h-10 w-35 shadow-[2px_2px_2px_2px_rgba(0,0,0,0.9)]">
           <img src={winlogo} className="h-8 w-12 pl-3" />
           <h1 className="pixel tracking-widst text-black text-2xl font-bold spacing">Start</h1>
-        </motion.div>   
+        </motion.div>
       </div>
 
-      <div className="flex items-center font-regular justify-center gap-3 bg-[#C0C0C0] border-b-3 border-white border-r-3 h-10 w-30 shadow-[-2px_-2px_4px_2px_rgba(0,0,0,0.9)]">
+      <div
+        className="flex items-center font-regular justify-center gap-3 bg-[#C0C0C0] border-b-3 border-white border-r-3 h-10 w-30 shadow-[-2px_-2px_4px_2px_rgba(0,0,0,0.9)]">
         <h1 className="pixel tracking-widest text-black text-lg spacing">
           {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </h1>
       </div>
     </div>
-      </div>
-    </>
-  );
+  </div>
+</>
+);
 }
 
 export default App;
