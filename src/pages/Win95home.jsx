@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef} from "react";
 import BottomBar from "../components/BottomBar";
 import winlogo from '../assets/img/windows95logo.svg';
 
 import { Analytics } from '@vercel/analytics/react';
 import { motion } from "motion/react";
+
 import about from "../assets/img/about.svg";
 import skills from "../assets/img/cv.svg";
 import contacts from "../assets/img/contacts.svg";
@@ -18,10 +19,13 @@ const imageMap = {
 };
 
 function App() {
-  
+ 
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isOpen, setOpen] = useState(true);
   const [isToggled, setToggle] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const dragging = useRef(false);
+  const offset = useRef({ x: 0, y: 0 });
 
   const icons = [
     {
@@ -51,15 +55,41 @@ function App() {
   }
 
   useEffect(() => {
+     const updatePosition = (e) => {
+      dragging.current = false;
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", updatePosition);
+    
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(now);
     };
     updateTime();
     const interval = setInterval(updateTime, 100);
-    return () => clearInterval(interval);
-  }, []);
+    return () =>
+       clearInterval(interval);
+  },[]);
 
+   const handleMouseMove = (e) => {
+    if (!dragging.current) return;
+    setPosition({
+      x: e.clientX - offset.current.x,
+      y: e.clientY - offset.current.y,
+    });
+  };
+
+    const handleMouseDown = (e) => {
+    dragging.current = true;
+    offset.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    };
+  };
+
+  const handleMouseUp = () => {
+    dragging.current = false;
+  };
 
 return (
 <>
@@ -77,16 +107,13 @@ return (
            <div className="flex items-center w-full h-13 pl-4 hover:bg-[#0000ff] hover:text-white" key={key}> 
                <img src={imageMap[ico.src]} className="w-8 h-8 mr-2" />
                <p>{ico.iconname}</p>
-
            </div>
         ))}
       </div>
   </div>
   )}
 
-  {isOpen && (
-     <div className="bg-white h-10 w-20 absolute top-10 left-40"><p>d</p></div>
-  )}
+ 
 
   {/* WINDOW AREA */}
   <div>
@@ -97,6 +124,20 @@ return (
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
       </div>
       ))}
+      <div
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      className="w-40 h-24 bg-green-600 text-white flex items-center justify-center select-none cursor-grab rounded shadow-lg"
+      style={{
+        position: "absolute",
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+      }}
+    >
+      Drag me!
+    </div>
     </div>
   </div>
 
