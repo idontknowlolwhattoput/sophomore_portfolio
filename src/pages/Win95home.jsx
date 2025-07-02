@@ -10,6 +10,10 @@ import skills from "../assets/img/cv.svg";
 import contacts from "../assets/img/contacts.svg";
 import email from "../assets/img/email.svg";
 
+import Minimize from '../assets/img/minimize.svg'
+import Scale from '../assets/img/scaledown.svg'
+import Close from '../assets/img/close.svg'
+
 
 const imageMap = {
   about,
@@ -75,8 +79,6 @@ function App() {
       iconname,
       src,
     }));
-
-    console.log(iconname)
     console.log(src)
   };
 
@@ -123,7 +125,7 @@ return (
 <>
   {/* START MENU MODAL */}
   {isToggled && (
-  <div className="flex flex-row absolute h-100 w-75 bg-[#C0C0C0] bottom-13 z-40 shadow-[2px_2px_3px_0.5px_rgba(0,0,0,0.9)] border-3 border-white">
+  <div className="flex flex-row absolute h-100 w-75 bg-[#C0C0C0] bottom-13 z-40 shadow-[3px_3px_3px_0.5px_rgba(0,0,0.9)] border-3 border-white border-b-0 border-r-0">
       <span className= "flex items-center justify-center bg-gray-600 w-12">
         <div className="flex flex-col gap-26  mt-20">
            <p className=" -rotate-90 text-gray-300 text-3xl font-semilight   whitespace-nowrap ">95</p>
@@ -154,9 +156,19 @@ return (
       ))}
 
       <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-t-3 border-l-3 border-white">
-         <div className="flex items-center pl-1 bg-[#0118D8] w-full h-7">
-            <img src={selected.src} className="w-5 h-5"/>
-            <p>{selected.iconname}</p>
+         <div className="flex items-center pl-2 pr-2 bg-[#0118D8] w-full h-8 justify-between">
+            <div className="flex items-center gap-1 cursor-pointer">
+              {/* APPLICATION NAME AND LOGO */}
+              <img src={imageMap[selected.src]} className="w-5 h-5"/>
+              <p className="pixel font-semibold tracking-widest text-white">{selected.iconname}</p>
+            </div>
+
+               {/* APPLICATION CONTROL BUTTON */}
+            <div className="flex flex-row items-center gap-1">
+               <img src={Minimize} className="w-5 h-5"/>
+               <img src={Scale} className="w-5 h-5"/>
+               <img src={Close} className="w-5 h-5"/>
+            </div>
          </div>
       </div>
     </div>
