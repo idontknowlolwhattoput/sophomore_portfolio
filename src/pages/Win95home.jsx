@@ -21,11 +21,26 @@ const imageMap = {
 function App() {
  
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isOpen, setOpen] = useState(true);
-  const [isToggled, setToggle] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
+
+  //CLICKING THE WINDOW ICONS
+  const [isOpen, setOpen] = useState(true);
+  const [selected, setSelected] = useState(
+    {
+      iconname: "",
+      src: "",
+      default: "",
+    }
+  )
+
+  //TRACKING START STATE
+  const [isToggled, setToggle] = useState(false);
+
+  //NAVBAR TIME
+  const [currentTime, setCurrentTime] = useState(new Date());
+ 
+
 
   const icons = [
     {
@@ -54,6 +69,19 @@ function App() {
     setToggle(prev => !prev)
   }
 
+  const handleSelect = (iconname, src) => {
+    setSelected(prev => ({
+      ...prev,
+      iconname,
+      src,
+    }));
+
+    console.log(iconname)
+    console.log(src)
+  };
+
+ 
+  {/* 
   useEffect(() => {
      const updatePosition = (e) => {
       dragging.current = false;
@@ -90,7 +118,7 @@ function App() {
   const handleMouseUp = () => {
     dragging.current = false;
   };
-
+*/}
 return (
 <>
   {/* START MENU MODAL */}
@@ -104,7 +132,7 @@ return (
       </span>
       <div className="pixel text-lg font-medium flex flex-col h-full w-full cursor-pointer">
         {icons.map((ico, key) => (
-           <div className="flex items-center w-full h-13 pl-4 hover:bg-[#0000ff] hover:text-white" key={key}> 
+           <div className="flex items-center w-full h-13 pl-4 hover:bg-[#0000ff] hover:text-white" key={key} onClick={(e) => {handleSelect(ico.iconname, ico.src)}}> 
                <img src={imageMap[ico.src]} className="w-8 h-8 mr-2" />
                <p>{ico.iconname}</p>
            </div>
@@ -119,25 +147,18 @@ return (
   <div>
     <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
-      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}>
+      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key} draggable={true} >
         <img src={imageMap[ico.src]} className="w-15 h-15" />
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
       </div>
       ))}
-      <div
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      className="w-40 h-24 bg-green-600 text-white flex items-center justify-center select-none cursor-grab rounded shadow-lg"
-      style={{
-        position: "absolute",
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-    >
-      Drag me!
-    </div>
+
+      <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-t-3 border-l-3 border-white">
+         <div className="flex items-center pl-1 bg-[#0118D8] w-full h-7">
+            <img src={selected.src} className="w-5 h-5"/>
+            <p>{selected.iconname}</p>
+         </div>
+      </div>
     </div>
   </div>
 
