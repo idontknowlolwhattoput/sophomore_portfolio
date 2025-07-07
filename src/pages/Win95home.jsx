@@ -28,6 +28,8 @@ function App() {
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
+  const [isDrag, setDrag] = useState(false);
+
   //CLICKING THE WINDOW ICONS
   const [isOpen, setOpen] = useState(true);
   const [selected, setSelected] = useState(
@@ -83,7 +85,7 @@ function App() {
   };
 
  
-  {/* 
+  
   useEffect(() => {
      const updatePosition = (e) => {
       dragging.current = false;
@@ -120,7 +122,15 @@ function App() {
   const handleMouseUp = () => {
     dragging.current = false;
   };
-*/}
+
+  const handleTrigger = () => {
+    setDrag(true)
+  }
+
+  const handleDeTrigger = () => {
+    setDrag(false)
+  }
+
 return (
 <>
   {/* START MENU MODAL */}
@@ -149,21 +159,19 @@ return (
   <div>
     <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
-      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key} draggable={true} >
+      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}  >
         <img src={imageMap[ico.src]} className="w-15 h-15" />
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
       </div>
       ))}
+       <p>{String(isDrag)}</p>
 
-      <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-t-3 border-l-3 border-white">
-         <div className="flex items-center pl-2 pr-2 bg-[#0118D8] w-full h-8 justify-between">
-            <div className="flex items-center gap-1 cursor-pointer">
-              {/* APPLICATION NAME AND LOGO */}
+      <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1">
+         <div className="flex items-center pl-2 pr-2 bg-[#0118D1] w-full h-8 justify-between cursor-pointer" onMouseDown={handleTrigger} onMouseUp={handleDeTrigger}>
+            <div className="flex items-center gap-1 ">
               <img src={imageMap[selected.src]} className="w-5 h-5"/>
               <p className="pixel font-semibold tracking-widest text-white">{selected.iconname}</p>
             </div>
-
-               {/* APPLICATION CONTROL BUTTON */}
             <div className="flex flex-row items-center gap-1">
                <img src={Minimize} className="w-5 h-5"/>
                <img src={Scale} className="w-5 h-5"/>
@@ -171,6 +179,7 @@ return (
             </div>
          </div>
       </div>
+    
     </div>
   </div>
 
