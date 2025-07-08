@@ -24,7 +24,7 @@ const imageMap = {
 
 function App() {
  
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 356, y: 69 });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
@@ -84,14 +84,7 @@ function App() {
     console.log(src)
   };
 
- 
-  
   useEffect(() => {
-     const updatePosition = (e) => {
-      dragging.current = false;
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updatePosition);
     
     const updateTime = () => {
       const now = new Date();
@@ -99,37 +92,29 @@ function App() {
     };
     updateTime();
     const interval = setInterval(updateTime, 100);
-    return () =>
+    return () => {  
        clearInterval(interval);
+    }
   },[]);
 
-   const handleMouseMove = (e) => {
-    if (!dragging.current) return;
-    setPosition({
-      x: e.clientX - offset.current.x,
-      y: e.clientY - offset.current.y,
-    });
-  };
 
-    const handleMouseDown = (e) => {
-    dragging.current = true;
-    offset.current = {
-      x: e.clientX - position.x,
-      y: e.clientY - position.y,
-    };
-  };
+  const handleOnMouseDown = () => {
+     setDrag(true)
 
-  const handleMouseUp = () => {
-    dragging.current = false;
-  };
-
-  const handleTrigger = () => {
-    setDrag(true)
   }
 
-  const handleDeTrigger = () => {
+  const handleOnMouseUp = () => {
     setDrag(false)
   }
+
+  const handleMouseMove = (e) => {
+    if (!isDrag) return;
+
+    setPosition((prev) => ({
+      x: prev.x + e.movementX,
+      y: prev.y + e.movementY,
+    }));
+  }; 
 
 return (
 <>
@@ -156,7 +141,7 @@ return (
  
 
   {/* WINDOW AREA */}
-  <div>
+  <div className="select-none">
     <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
       <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}  >
@@ -164,10 +149,17 @@ return (
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
       </div>
       ))}
-       <p>{String(isDrag)}</p>
+         <p>{String(isDrag)}</p>
+         <p>X: {position.x}, Y: {position.y}</p>
 
-      <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1">
-         <div className="flex items-center pl-2 pr-2 bg-[#0118D1] w-full h-8 justify-between cursor-pointer" onMouseDown={handleTrigger} onMouseUp={handleDeTrigger}>
+      <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
+        
+        style={{ 
+        left: position.x,
+        top: position.y,
+       }}
+      >
+         <div className="flex items-center pl-2 pr-2 bg-[#0118D1] w-full h-8 justify-between cursor-pointer" onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp} onMouseMove={handleMouseMove} >
             <div className="flex items-center gap-1 ">
               <img src={imageMap[selected.src]} className="w-5 h-5"/>
               <p className="pixel font-semibold tracking-widest text-white">{selected.iconname}</p>
