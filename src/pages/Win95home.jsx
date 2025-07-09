@@ -181,7 +181,7 @@ return (
     <div className="flex flex-row items-center gap-1">
       <img src={Minimize} className="w-5 h-5" />
       <img src={Scale} className="w-5 h-5" />
-      <img src={Close} className="w-5 h-5" />
+      <img src={Close} className="w-5 h-5"  onClick={(e) => {setOpen(false)}}/>
     </div>
   </div>
 </div>
