@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef} from "react";
-import BottomBar from "../components/BottomBar";
+
 import winlogo from '../assets/img/windows95logo.svg';
 
 import { Analytics } from '@vercel/analytics/react';
@@ -122,22 +122,7 @@ function App() {
 
 return (
 <>
-  {firstVisit && (
-    <div className="flex flex-col gap-3 justify-center items-center w-screen h-screen text-white bg-[#008080] absolute z-9">
-      <div className="w-full h-[60px] top-0 absolute" style={{
-          backgroundImage: `repeating-linear-gradient(45deg, black, black 20px, #f59e0b 20px, #f59e0b 40px)`
-      }}></div>
-         <img src={construction} className="w-50 h-50"/>
-         <h1 className="text-4xl font-bold ">Website is currently in progress!</h1>
-         <p className="w-200 text-center text-lg ">Website may appear glitched and incompatible in different browser and device, many bugs may occur during your experience. 
-          We apologize for this inconvenience and we're trying to get back as soon as possible!</p>
-         <button className="bg-blue-700 h-10 w-30 text-md rounded-3xl shadow-2xl font-semibold" onClick={() => {setVisit(false)}}>Continue</button>
-      <div className="w-full h-[60px] bottom-0 absolute" style={{
-         backgroundImage: `repeating-linear-gradient(45deg, black, black 20px, #f59e0b 20px, #f59e0b 40px)`
-      }}></div>
-    </div>
-  )}
-
+ 
   {/* START MENU MODAL */}
   {isToggled && (
   <div className="flex flex-row absolute h-100 w-75 bg-[#C0C0C0] bottom-13 z-40 shadow-[3px_3px_3px_0.5px_rgba(0,0,0.9)] border-3 border-white border-b-0 border-r-0">
@@ -173,7 +158,7 @@ return (
          <p>X: {position.x}, Y: {position.y}</p>
 
       <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
-        
+      
         style={{ 
         left: position.x,
         top: position.y,
