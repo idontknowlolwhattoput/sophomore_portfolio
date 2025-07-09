@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -8,16 +9,19 @@
   font-style: normal;
 }
 
+.bebas {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 :root {
-    cursor: url("../src/assets/cursors/arrow.cur"), pointer;
-    background: #008080;
+    cursor: url("../src/assets/cursors/arrow.cur"), pointer
 }
 
 
-body {
-  margin: 0;
-}
+
 
 .pixel {
      font-family: 'Win95Font', sans-serif;

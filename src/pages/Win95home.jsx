@@ -33,7 +33,7 @@ function App() {
   const [isDrag, setDrag] = useState(false);
 
   //CLICKING THE WINDOW ICONS
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
   const [selected, setSelected] = useState(
     {
       iconname: "",
@@ -80,6 +80,7 @@ function App() {
   }
 
   const handleSelect = (iconname, src) => {
+    setOpen(true)
     setSelected(prev => ({
       ...prev,
       iconname,
@@ -146,7 +147,7 @@ return (
  
 
   {/* WINDOW AREA */}
-  <div className="select-none">
+  <div className="select-none bg-[#008080]">
     <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
       <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}  >
@@ -156,30 +157,39 @@ return (
       ))}
          <p>{String(isDrag)}</p>
          <p>X: {position.x}, Y: {position.y}</p>
+      {isOpen && (
+         <div
+  className="bg-gray-400 w-200 h-130 absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
+  style={{
+    left: position.x,
+    top: position.y,
+  }}
+>
+  <div
+    className="flex items-center justify-between w-full h-8 pl-2 pr-2 bg-[#0118D1] cursor-pointer"
+    onMouseDown={handleOnMouseDown}
+    onMouseUp={handleOnMouseUp}
+    onMouseMove={handleMouseMove}
+  >
+    <div className="flex items-center gap-1">
+      <img src={imageMap[selected.src]} className="w-5 h-5" />
+      <p className="pixel font-semibold tracking-widest text-white">
+        {selected.iconname}
+      </p>
+    </div>
 
-      <div className="bg-gray-400 w-200 h-130 top-[10%] left-[15%] absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
-      
-        style={{ 
-        left: position.x,
-        top: position.y,
-       }}
-      >
-         <div className="flex items-center pl-2 pr-2 bg-[#0118D1] w-full h-8 justify-between cursor-pointer" onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp} onMouseMove={handleMouseMove} >
-            <div className="flex items-center gap-1 ">
-              <img src={imageMap[selected.src]} className="w-5 h-5"/>
-              <p className="pixel font-semibold tracking-widest text-white">{selected.iconname}</p>
-            </div>
-            <div className="flex flex-row items-center gap-1">
-               <img src={Minimize} className="w-5 h-5"/>
-               <img src={Scale} className="w-5 h-5"/>
-               <img src={Close} className="w-5 h-5"/>
-            </div>
-         </div>
-      </div>
-    
+    <div className="flex flex-row items-center gap-1">
+      <img src={Minimize} className="w-5 h-5" />
+      <img src={Scale} className="w-5 h-5" />
+      <img src={Close} className="w-5 h-5" />
     </div>
   </div>
+</div>
 
+      )}
+    </div>
+  </div>
+ 
   {/* NAVBAR */}
   <div className="bottom-0">
     <div
