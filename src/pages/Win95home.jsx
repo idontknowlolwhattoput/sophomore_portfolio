@@ -30,6 +30,7 @@ const imageMap = {
 function App() {
   const [firstVisit, setVisit] = useState(true)
   const [position, setPosition] = useState({ x: 20, y: 30 });
+    const [lastTouch, setLastTouch] = useState({ x: 15, y: 25 });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
@@ -146,6 +147,31 @@ function App() {
     }));
   }; 
 
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    setLastTouch({ x: touch.clientX, y: touch.clientY });
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - lastTouch.x;
+    const deltaY = touch.clientY - lastTouch.y;
+
+    setPosition((prev) => ({
+      x: prev.x + deltaX,
+      y: prev.y + deltaY,
+    }));
+
+    setLastTouch({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
 return (
 <>
  
@@ -194,7 +220,8 @@ return (
            top: position.y,
        }}>
         <div className="flex items-center justify-between w-full h-8 pl-2 pr-2 bg-[#0118D1] cursor-pointer"
-          onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp} onMouseMove={handleMouseMove}>
+          onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp} onMouseMove={handleMouseMove}
+           onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
           <div className="flex items-center gap-1">
             <img src={imageMap[selected.src]} className="w-5 h-5" />
             <p className="pixel font-semibold tracking-widest text-white">
