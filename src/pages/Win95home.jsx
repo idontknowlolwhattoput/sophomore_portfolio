@@ -29,7 +29,7 @@ const imageMap = {
 
 function App() {
   const [firstVisit, setVisit] = useState(true)
-  const [position, setPosition] = useState({ x: 356, y: 69 });
+  const [position, setPosition] = useState({ x: 20, y: 30 });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
@@ -53,6 +53,7 @@ function App() {
   //NAVBAR TIME
   const [currentTime, setCurrentTime] = useState(new Date());
   
+  const [isRendered, setRender] = useState(false)
 
 
   const icons = [
@@ -83,13 +84,13 @@ function App() {
   }
 
   const renderContent = () => {
-
+       setOpen
        switch (selected.src) {
-         case about:
-             return <About />
+         case "about":
+             return <About />;
 
-         case skills:
-             return <Skills />
+         case "skills":
+             return <Skills />;
 
          default:
            return null;
@@ -98,18 +99,16 @@ function App() {
   }
 
   const handleSelect = (iconname, src) => {
-    {renderContent()}
     setOpen(true)
+    setRender(true)
     setSelected(prev => ({
       ...prev,
       iconname,
       src,
     }));
-    console.log(src)
   };
  
   useEffect(() => {
-    
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(now);
@@ -119,7 +118,14 @@ function App() {
     return () => {  
        clearInterval(interval);
     }
+    
   },[]);
+
+  useEffect(() => {
+  if (selected) {
+    renderContent();
+  }
+  }, [selected]);
 
 
   const handleOnMouseDown = () => {
@@ -171,16 +177,16 @@ return (
   <div className="select-none bg-[#008080]">
     <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
       {icons.map((ico, key) => (
-      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}>
+      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}onClick={(e)=>
+        {handleSelect(ico.iconname, ico.src)}}>
         <img src={imageMap[ico.src]} className="w-15 h-15" />
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
       </div>
       ))}
-      <p>{String(isDrag)}</p>
-      <p>X: {position.x}, Y: {position.y}</p>
+       <p>X: {position.x}, Y:{position.y} </p>
       {isOpen && (
       <div
-        className="bg-gray-400 w-200 h-130 absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
+        className="bg-gray-400 w-100 h-65 absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
         style={{
            left: position.x,
            top: position.y,
@@ -199,6 +205,11 @@ return (
             <img src={Close} className="w-5 h-5" onClick={(e)=> {setOpen(false)}}/>
           </div>
         </div>
+          {isRendered && (
+             <div className="">
+               {renderContent()}
+             </div>
+          )}
       </div>
       )}
     </div>

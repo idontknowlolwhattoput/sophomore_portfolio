@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 
 function About () {
+
     return (
-       <div className="">About</div>
+       <div className="">
+       
+       </div>
     );
 }
 
