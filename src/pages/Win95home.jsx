@@ -29,7 +29,7 @@ const imageMap = {
 
 function App() {
   const [firstVisit, setVisit] = useState(true)
-  const [position, setPosition] = useState({ x: 20, y: 30 });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
     const [lastTouch, setLastTouch] = useState({ x: 15, y: 25 });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
@@ -213,15 +213,14 @@ return (
 
       {isOpen && (
       <div
-        className="bg-gray-400 w-100 h-65 absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
+        className="bg-gray-400 w-full h-full absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
                   md:w-200 md:h-130"
         style={{
            left: position.x,
            top: position.y,
        }}>
         <div className="flex items-center justify-between w-full h-8 pl-2 pr-2 bg-[#0118D1] cursor-pointer"
-          onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp} onMouseMove={handleMouseMove}
-           onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+          onMouseDown={handleOnMouseDown} onMouseUp={handleOnMouseUp} onMouseMove={handleMouseMove}>
           <div className="flex items-center gap-1">
             <img src={imageMap[selected.src]} className="w-5 h-5" />
             <p className="pixel font-semibold tracking-widest text-white">
