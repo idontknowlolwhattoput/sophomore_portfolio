@@ -184,9 +184,11 @@ return (
       </div>
       ))}
        <p>X: {position.x}, Y:{position.y} </p>
+
       {isOpen && (
       <div
-        className="bg-gray-400 w-100 h-65 absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1"
+        className="bg-gray-400 w-100 h-65 absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
+                  md:w-200 md:h-130"
         style={{
            left: position.x,
            top: position.y,
