@@ -200,8 +200,8 @@ return (
 
 
   {/* WINDOW AREA */}
-  <div className="select-none bg-[#008080]">
-    <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-screen">
+  <div className="select-none bg-[#008080] h-screen">
+    <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-full">
       {icons.map((ico, key) => (
       <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}onClick={(e)=>
         {handleSelect(ico.iconname, ico.src)}}>
@@ -210,6 +210,7 @@ return (
       </div>
       ))}
 
+      {/* THE APP CONTAINER */}
       {isOpen && (
       <div
         className="bg-gray-400 w-full h-full absolute top-[10%] left-[15%] border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
@@ -233,8 +234,8 @@ return (
           </div>
         </div>
           {isRendered && (
-             <div className="">
-               {renderContent()}
+             <div className="p-3 w-full h-full">
+               {renderContent()} 
              </div>
           )}
       </div>
