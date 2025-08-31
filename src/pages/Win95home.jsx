@@ -30,7 +30,7 @@ const imageMap = {
 function App() {
   const [firstVisit, setVisit] = useState(true)
   const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [lastTouch, setLastTouch] = useState({ x: 15, y: 25 });
+  const [lastTouch, setLastTouch] = useState({ x: 15, y: 25 });
   const dragging = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
 
@@ -209,7 +209,6 @@ return (
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
       </div>
       ))}
-       <p>X: {position.x}, Y:{position.y} </p>
 
       {isOpen && (
       <div
@@ -227,10 +226,10 @@ return (
               {selected.iconname}
             </p>
           </div>
-          <div className="flex flex-row items-center gap-1">
-            <img src={Minimize} className="w-5 h-5" />
-            <img src={Scale} className="w-5 h-5" />
-            <img src={Close} className="w-5 h-5" onClick={(e)=> {setOpen(false)}}/>
+          <div className="flex flex-row items-center gap-1.5">
+            <img src={Minimize} className="w-5 h-5 shadow-[1px_1px_1px_2px_rgba(0,0,0,0.7)]" />
+            <img src={Scale} className="w-5 h-5 shadow-[1px_1px_1px_2px_rgba(0,0,0,0.7)]" />
+            <img src={Close} className="w-5 h-5 shadow-[1px_1px_1px_2px_rgba(0,0,0,0.7)]" onClick={(e)=> {setOpen(false)}}/>
           </div>
         </div>
           {isRendered && (
@@ -253,14 +252,14 @@ return (
             stiffness: 300,
             damping: 15,
           }}
-          className="flex items-center justify gap-3 bg-[#C0C0C0] border-t-3 border-white border-l-3 h-10 w-35 shadow-[2px_2px_2px_2px_rgba(0,0,0,0.9)]">
+          className="flex items-center justify gap-3 bg-[#C0C0C0] border-t-3 border-white border-l-3 h-10 w-35 shadow-[2px_2px_2px_1px_rgba(0,0,0,0.5)]">
           <img src={winlogo} className="h-8 w-12 pl-3" />
           <h1 className="pixel tracking-widst text-black text-2xl font-bold spacing">Start</h1>
         </motion.div>
       </div>
 
       <div
-        className="flex items-center font-regular justify-center gap-3 bg-[#C0C0C0] border-b-3 border-white border-r-3 h-10 w-30 shadow-[-2px_-2px_4px_2px_rgba(0,0,0,0.9)] cursor-pointer">
+        className="flex items-center font-regular justify-center gap-3 bg-[#C0C0C0] border-b-3 border-white border-r-3 h-10 w-30 shadow-[-2px_-2px_4px_1px_rgba(0,0,0,0.5)] cursor-pointer">
         <h1 className="pixel tracking-widest text-black text-lg spacing">
           {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </h1>
