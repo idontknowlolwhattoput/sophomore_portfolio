@@ -234,7 +234,12 @@ return (
           </div>
         </div>
           {isRendered && (
-             <div className="p-3 w-full h-full">
+             <div className="p-1 pl-3 pr-3 w-full h-[calc(100%-10%)] md:h-[calc(100%-7%)]">
+              <div className="mb-1 flex flex-row gap-3 font-medium">
+                <p className="hover:bg-black hover:text-white">File</p> 
+                <p className="hover:bg-black hover:text-white">Edit</p> 
+                <p className="hover:bg-black hover:text-white">Settings</p>
+              </div>
                {renderContent()} 
              </div>
           )}
