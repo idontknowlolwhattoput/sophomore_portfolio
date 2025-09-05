@@ -203,7 +203,7 @@ return (
   <div className="select-none bg-[#008080] h-screen">
     <div className="flex flex-col pl-3 pt-6 gap-3 w-screen h-full">
       {icons.map((ico, key) => (
-      <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}onClick={(e)=>
+        <div className="flex flex-col gap-1 items-center w-25 h-25 active:bg-gray-300 " key={key}onClick={(e)=>
         {handleSelect(ico.iconname, ico.src)}}>
         <img src={imageMap[ico.src]} className="w-15 h-15" />
         <p className="pixel text-center text-white text-lg">{ico.iconname}</p>
@@ -235,14 +235,14 @@ return (
         </div>
           {isRendered && (
              <div className="p-1 pl-3 pr-3 w-full h-[calc(100%-10%)] md:h-[calc(100%-7%)]">
-              <div className="mb-1 flex flex-row gap-3 font-medium">
-                <p className="hover:bg-black hover:text-white">File</p> 
+              <div className="mb-1 flex flex-row gap-3 font-medium ">
+                <p className="hover:bg-black hover:text-white ">File</p> 
                 <p className="hover:bg-black hover:text-white">Edit</p> 
                 <p className="hover:bg-black hover:text-white">Settings</p>
               </div>
                {renderContent()} 
              </div>
-          )}
+               )}
       </div>
       )}
     </div>

@@ -15,13 +15,9 @@
   font-style: normal;
 }
 
-
 :root {
     cursor: url("../src/assets/cursors/arrow.cur"), pointer
 }
-
-
-
 
 .pixel {
      font-family: 'Win95Font', sans-serif;
@@ -30,3 +26,45 @@
 .custom-cursor {
    cursor: url('./assets/img/windows95logo.svg'), auto
 }
+
+/* Windows 95 Scrollbar */
+.win95-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: #d4d0c8 #ffffff;
+}
+
+/* Chrome, Edge, Safari */
+.win95-scrollbar::-webkit-scrollbar {
+  width: 17px;
+  background: #c0c0c0;
+}
+
+.win95-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+  box-shadow: inset 1px 1px #ffffff, inset -1px -1px #808080;
+}
+
+.win95-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4d0c8;
+  border: 2px solid #ffffff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #ffffff;
+}
+
+/* Arrows (may not render in all browsers) */
+.win95-scrollbar::-webkit-scrollbar-button {
+  background: #d4d0c8;
+  height: 17px;
+  width: 17px;
+  display: block;
+  border: 2px solid #ffffff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #ffffff;
+}
+
+/* Arrow symbols */
+.win95-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background: #d4d0c8 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><polygon points='5,2 9,6 1,6' fill='black'/></svg>") no-repeat center;
+}
+.win95-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+  background: #d4d0c8 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><polygon points='5,8 9,4 1,4' fill='black'/></svg>") no-repeat center;
+}
+
