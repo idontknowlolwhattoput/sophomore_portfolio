@@ -14,12 +14,14 @@ function About () {
         <div className="w-screen h-50 shadow-[2px_3px_3px_1px_rgba(0,0,0,0.90)] ">
 
           {/* <!-----------GREY BAR-----------------> */}
-          <div className="w-full h-[30%] bg-[#7D7D7D] flex items-center pl-3 gap-1 ">
+          <div className="w-full h-[20%] bg-[#7D7D7D] flex items-center pl-3 gap-1 ">
             <img src={info} className="w-6 h-6"/>
             <p className="font-bold">General Info</p>
           </div>
 
-          <div className=""></div>
+          <div className="">
+            
+          </div>
 
         </div>
      

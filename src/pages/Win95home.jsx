@@ -22,7 +22,7 @@ const imageMap = { about, skills, contacts, email };
 
 function App() {
   const [firstVisit, setVisit] = useState(true);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: -13, y: -23});
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   const animationRef = useRef(null);
   const offset = useRef({ x: 0, y: 0 });
@@ -184,7 +184,7 @@ function App() {
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              className="bg-gray-400 w-full h-full absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
+              className="bg-gray-400 w-screen h-screen absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
                          md:w-200 md:h-130 transition-transform duration-75 ease-out"
               style={{
                 transform: `translate(${position.x}px, ${position.y}px)`,
