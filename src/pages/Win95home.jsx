@@ -185,7 +185,7 @@ function App() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
               className="bg-gray-400 w-screen h-screen absolute border-white border-t-3 border-l-3 shadow-[3px_3px_3px_1px_rgba(0,0,0.9)] border-r-1 border-b-1
-                         md:w-200 md:h-130 transition-transform duration-75 ease-out"
+                         md:w-280 md:h-150 transition-transform duration-75 ease-out"
               style={{
                 transform: `translate(${position.x}px, ${position.y}px)`,
               }}
